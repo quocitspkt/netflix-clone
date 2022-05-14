@@ -1,28 +1,30 @@
-import "./App.css";
-import Banner from "./components/Banner";
-import Row from "./components/Row";
 import request from "./request";
-import "../src/components/Banner.css";
-import Nav from "../src/components/Nav";
-
+import { JumbotronContainer } from "../src/containers/jumbotron";
+import Jumbotron from "./components/jumbotron";
+import jumboData from "../src/fixtures/jumbo.json";
+import { FooterContainer } from "./containers/footer";
+import { FaqsContainer } from "./containers/faqs";
+import * as ROUTES from "./constants/routes";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Browse, SignIn, SignUp, Home } from "./pages";
 function App() {
   return (
-    <div className="App">
-      <Nav />
-      <Banner />
-      <Row
-        title="NETFLIX ORIGINALS"
-        fetchUrl={request.fetchNetflixOriginals}
-        isPosterLarge={true}
-      />
-      <Row title="Trending Now" fetchUrl={request.fetchTrending} />
-      <Row title="Top Related" fetchUrl={request.fetchTopRated} />
-      <Row title="Action Movies" fetchUrl={request.fetchActionMovies} />
-      <Row title="Comedy Movies" fetchUrl={request.fetchComedyMovies} />
-      <Row title="Horror Movies" fetchUrl={request.fetchHorrorMovies} />
-      <Row title="Romance Movies" fetchUrl={request.fetchRomanceMovies} />
-      <Row title="Documentaries Movies" fetchUrl={request.fetchDocumentaries} />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/browse">
+          <Browse></Browse>
+        </Route>
+        <Route exact path="/signin">
+          <SignIn></SignIn>
+        </Route>
+        <Route exact path="/signup">
+          <SignUp></SignUp>
+        </Route>
+        <Route exact path={ROUTES.HOME}>
+          <Home></Home>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
