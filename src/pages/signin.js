@@ -23,7 +23,8 @@ export default function SignIn() {
       .auth()
       .signInWithEmailAndPassword(emailAddress, password)
       .then(() => {
-        history.push(ROUTES.BROWSE);
+        history.push(ROUTES.HOME);
+        console.log("signIn success");
       })
       .catch((error) => {
         setEmailAddress("");

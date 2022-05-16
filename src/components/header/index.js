@@ -48,6 +48,8 @@ Header.Logo = function HeaderLogo({ to, ...restProps }) {
 Header.Search = function HeaderSearch({
   searchTerm,
   setSearchTerm,
+  setIsSearch,
+  isSearch,
   ...restProps
 }) {
   const [searchActive, setSearchActive] = useState(false);
@@ -55,7 +57,7 @@ Header.Search = function HeaderSearch({
   return (
     <Search {...restProps}>
       <SearchIcon
-        onClick={() => setSearchActive((searchActive) => !searchActive)}
+        onClick={() => setIsSearch(!isSearch)}
         data-testid="search-click"
       >
         <img src="/images/icons/search.png" alt="Search" />
@@ -63,8 +65,8 @@ Header.Search = function HeaderSearch({
       <SearchInput
         value={searchTerm}
         onChange={({ target }) => setSearchTerm(target.value)}
-        placeholder="Search films and series"
-        active={searchActive}
+        placeholder="Search films "
+        active={isSearch}
         data-testid="search-input"
       />
     </Search>

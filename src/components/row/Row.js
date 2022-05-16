@@ -1,8 +1,8 @@
 import movieTrailer from "movie-trailer";
 import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
-import axios from "../axios";
-import "../components/Row.css";
+import axios from "../../axios";
+import "../../components/row/Row.css";
 
 function Row({ title, fetchUrl, isPosterLarge }) {
   const base_url = "https://image.tmdb.org/t/p/w500";
@@ -29,18 +29,14 @@ function Row({ title, fetchUrl, isPosterLarge }) {
   const handleClick = (movie) => {
     if (trailerUrl) {
       setTrailerUrl("");
-      console.log(movie, "Movie");
     } else {
       movieTrailer(movie?.name || "")
         .then((url) => {
-          console.log(movie, "Movie");
           const urlParams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlParams.get("v"));
-          console.log(urlParams, "URL Params");
         })
         .catch((error) => console.log(error));
     }
-    console.log("Handle click", trailerUrl, "TrailerUrl");
   };
 
   return (

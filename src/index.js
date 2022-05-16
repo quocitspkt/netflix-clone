@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GlobalStyles } from "./global-styles";
 import "normalize.css";
@@ -9,7 +9,7 @@ import { FirebaseContext } from "./context/firebase";
 
 ReactDOM.render(
   <>
-    <FirebaseContext.Provider value={firebase}>
+    <FirebaseContext.Provider value={{ firebase }}>
       <GlobalStyles />
       <App />
     </FirebaseContext.Provider>

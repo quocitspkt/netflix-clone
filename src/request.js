@@ -11,4 +11,9 @@ const request = {
   fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
 };
 
+export function SearchRequest(keyword) {
+  const fetchResultSearch = `/search/movie?api_key=${API_KEY}&query=${keyword}&page=1`;
+  return fetchResultSearch;
+}
+
 export default request;
