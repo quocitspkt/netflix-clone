@@ -12,14 +12,5 @@ export default function Browse() {
   const slides = selectionFilter({ series, films });
   const requestSearch = SearchRequest("iron");
 
-  useEffect(() => {
-    async function fetchData() {
-      const result = await axios.get(requestSearch);
-      console.log("result", result);
-      return result;
-    }
-    fetchData();
-  }, []);
-
   return <BrowseContainer slides={slides} />;
 }
