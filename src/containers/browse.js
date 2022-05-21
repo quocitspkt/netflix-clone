@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import Fuse from "fuse.js";
-import { Card, Header, Loading, Player } from "../components";
-import * as ROUTES from "../constants/routes";
-import logo from "../logo.svg";
+import { Loading } from "../components";
 import { FirebaseContext } from "../context/firebase";
 import { SelectProfileContainer } from "./profiles";
 import { FooterContainer } from "./footer";
@@ -10,14 +7,10 @@ import Row from "../components/row/Row";
 import request, { SearchRequest } from "../request";
 import Banner from "../components/banner/Banner";
 import Nav from "../components/nav/Nav";
-import axios from "../axios";
 
-export function BrowseContainer({ slides }) {
-  const [category, setCategory] = useState("series");
+export function BrowseContainer() {
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [slideRows, setSlideRows] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState();
   const [linkRequest, setLinkRequest] = useState();
@@ -35,23 +28,6 @@ export function BrowseContainer({ slides }) {
       setLoading(false);
     }, 3000);
   }, [profile.displayName]);
-
-  useEffect(() => {
-    setSlideRows(slides[category]);
-  }, [slides, category]);
-
-  useEffect(() => {
-    const fuse = new Fuse(slideRows, {
-      keys: ["data.description", "data.title", "data.genre"],
-    });
-    const results = fuse.search(searchTerm).map(({ item }) => item);
-
-    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
-      setSlideRows(results);
-    } else {
-      setSlideRows(slides[category]);
-    }
-  }, [searchTerm]);
 
   return profile.displayName ? (
     <>

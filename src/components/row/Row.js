@@ -34,8 +34,9 @@ function Row({ title, fetchUrl, isPosterLarge }) {
         .then((url) => {
           const urlParams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlParams.get("v"));
+          console.log(urlParams.get("v"), url);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error), console.log("Get movie error"));
     }
   };
 
